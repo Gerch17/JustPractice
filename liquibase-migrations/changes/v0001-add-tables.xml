@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="german" id="v0001-add-tables.xml">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="human"/>
+                <tableExists tableName="profession"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="profession">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"
+                             nullable="false" />
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="salary" type="int"/>
+        </createTable>
+
+        <createTable tableName="human">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"
+                             nullable="false" />
+            </column>
+            <column name="name" type="VARCHAR(20)"/>
+            <column name="second_name" type="VARCHAR(20)"/>
+            <column name="age" type="INT"/>
+            <column name="profession_id" type="BIGINT">
+                <constraints references="profession"
+                             deleteCascade="true"
+                             foreignKeyName="profession_id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
