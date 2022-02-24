@@ -10,6 +10,7 @@ import ru.gerch.justpractice.dto.HumanDto;
 import ru.gerch.justpractice.dto.ProfessionDto;
 import ru.gerch.justpractice.models.Human;
 import ru.gerch.justpractice.models.Profession;
+import ru.gerch.justpractice.service.CommonService;
 import ru.gerch.justpractice.service.HumanService;
 import ru.gerch.justpractice.service.ProfessionService;
 
@@ -21,12 +22,15 @@ public class MainController {
 
     private final HumanService humanService;
     private final ProfessionService professionService;
+    private final CommonService commonService;
 
     @Autowired
     public MainController(HumanService humanService,
-                          ProfessionService professionService) {
+                          ProfessionService professionService,
+                          CommonService commonService) {
         this.humanService = humanService;
         this.professionService = professionService;
+        this.commonService = commonService;
     }
 
     @PostMapping("/human")
@@ -71,5 +75,25 @@ public class MainController {
                                                    @RequestParam long humanId) {
         humanService.changeProfession(humanId, professionId);
         return ResponseEntity.ok("Profession has been successfully changed");
+    }
+
+    @GetMapping("/human/name/{id}")
+    public ResponseEntity<String> getHumanName(@PathVariable long id) {
+        return humanService.getHumanName(id);
+    }
+
+    @GetMapping("/greeting")
+    public ResponseEntity<String> getGreeting() {
+        return commonService.getGreeting();
+    }
+
+    @GetMapping("/human/random")
+    public ResponseEntity<Human> getRandomHuman() {
+        return ResponseEntity.ok(humanService.getRandomHuman());
+    }
+
+    @PostMapping("/human/rest")
+    public ResponseEntity<String> postHumanToAnotherModule(@RequestBody Human human) {
+        return ResponseEntity.ok(humanService.postHumanToAnotherModule(human));
     }
 }

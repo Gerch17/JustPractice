@@ -1,5 +1,6 @@
 package ru.gerch.justpractice.service;
 
+import org.springframework.http.ResponseEntity;
 import ru.gerch.justpractice.dto.HumanDto;
 import ru.gerch.justpractice.mappers.HumanMapper;
 import ru.gerch.justpractice.models.Human;
@@ -11,17 +12,21 @@ import java.util.List;
 
 @Service
 public class HumanService {
-    private HumanRepository humanRepository;
-    private HumanMapper humanMapper;
-    private ProfessionService professionService;
+    private final HumanRepository humanRepository;
+    private final HumanMapper humanMapper;
+    private final ProfessionService professionService;
+    private final RestService restService;
+
 
     @Autowired
     public HumanService(HumanRepository humanRepository,
                         HumanMapper humanMapper,
-                        ProfessionService professionService) {
+                        ProfessionService professionService,
+                        RestService restService) {
         this.humanRepository = humanRepository;
         this.humanMapper = humanMapper;
         this.professionService = professionService;
+        this.restService = restService;
     }
 
     public void postHuman(HumanDto human) {
@@ -41,5 +46,17 @@ public class HumanService {
         Human human = humanRepository.findHumanById(humanId);
         human.setProfession(professionService.findProfessionById(professionId));
         humanRepository.save(human);
+    }
+
+    public ResponseEntity<String> getHumanName(long id) {
+        return restService.getHuman(humanRepository.findHumanById(id));
+    }
+
+    public Human getRandomHuman() {
+        return restService.getRandomHuman();
+    }
+
+    public String postHumanToAnotherModule(Human human) {
+        return restService.postHuman(human);
     }
 }

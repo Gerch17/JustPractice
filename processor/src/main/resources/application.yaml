@@ -1,5 +1,6 @@
 server:
   port: 8069
+  url: http://localhost:8068
 
 logging:
   level:
