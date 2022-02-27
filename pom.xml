@@ -6,6 +6,7 @@
     <modules>
         <module>liquibase-migrations</module>
         <module>processor</module>
+        <module>service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
