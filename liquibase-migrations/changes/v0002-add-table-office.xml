@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="german" id="v0002-add-table-office.xml">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="office"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="office">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"
+                             nullable="false" />
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="address" type="int"/>
+            <column name="human_id" type="BIGINT">
+                <constraints references="human"
+                             deleteCascade="true"
+                             foreignKeyName="human_id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
