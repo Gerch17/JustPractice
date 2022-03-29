@@ -9,7 +9,7 @@ import ru.gerch.justpractice.models.Profession;
 import ru.gerch.justpractice.repository.ProfessionRepository;
 import ru.gerch.justpractice.service.ProfessionService;
 
-//Лучший способ Подключение Мокито
+//Лучший способ Подключение Мокито!
 @RunWith(MockitoJUnitRunner.class)
 public class ProfessionTest {
 
