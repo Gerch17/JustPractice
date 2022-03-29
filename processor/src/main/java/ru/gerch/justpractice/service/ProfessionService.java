@@ -36,4 +36,8 @@ public class ProfessionService {
         return professionRepository.findAll();
     }
 
+    public String getProfessionNameById(long id) {
+        Profession profession = professionRepository.findProfessionById(id);
+        return profession.getName();
+    }
 }
