@@ -16,6 +16,7 @@ public class ProfessionTest {
 // Второй способ подключения Мокито
 //    @Rule
 //    public MockitoRule initRule = MockitoJUnit.rule();
+    //Есть и третий способ, но он уже депрекейтид
 
     @Mock
     ProfessionRepository professionRepository;
