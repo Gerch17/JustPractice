@@ -96,4 +96,19 @@ public class MainController {
     public ResponseEntity<String> postHumanToAnotherModule(@RequestBody Human human) {
         return ResponseEntity.ok(humanService.postHumanToAnotherModule(human));
     }
+
+    //localhost:8069/human/change?name=3&humanId=10
+    @PostMapping("/human/change")
+    public ResponseEntity<Human> changeName(@RequestParam long humanId,
+                                            @RequestParam String name) {
+        humanService.changeName(humanId, name);
+        return ResponseEntity.ok(humanService.getHuman(humanId));
+    }
+
+    @PostMapping("/human/change/{id}/{name}")
+    public ResponseEntity<Human> changeName2(@PathVariable(name="id") long humanId,
+                                            @PathVariable String name) {
+        humanService.changeName(humanId, name);
+        return ResponseEntity.ok(humanService.getHuman(humanId));
+    }
 }

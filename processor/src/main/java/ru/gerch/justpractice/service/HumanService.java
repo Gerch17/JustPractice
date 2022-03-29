@@ -59,4 +59,10 @@ public class HumanService {
     public String postHumanToAnotherModule(Human human) {
         return restService.postHuman(human);
     }
+
+    public void changeName(long humanId, String name) {
+        Human human = humanRepository.findHumanById(humanId);
+        human.setName(name);
+        humanRepository.save(human);
+    }
 }

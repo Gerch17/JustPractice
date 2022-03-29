@@ -1,0 +1,46 @@
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.gerch.justpractice.models.Profession;
+import ru.gerch.justpractice.repository.ProfessionRepository;
+import ru.gerch.justpractice.service.ProfessionService;
+
+//Подключение Мокито
+@RunWith(MockitoJUnitRunner.class)
+public class ProfessionTest {
+
+// Второй способ подключения Мокито
+//    @Rule
+//    public MockitoRule initRule = MockitoJUnit.rule();
+
+    @Mock
+    ProfessionRepository professionRepository;
+
+    @Autowired
+    ProfessionService professionService;
+
+    @Test
+    void getProfessionNameTest() {
+        Profession profession = getProfession();
+        Mockito.when(professionRepository.findProfessionById(Mockito.anyInt())).thenReturn(profession);
+
+
+        String actualName = professionService.getProfessionNameById(10);
+        Assert.assertEquals(profession.getName(), actualName);
+    }
+
+    public Profession getProfession() {
+        Profession profession = new Profession();
+        profession.setName("Manager");
+        profession.setSalary(100000);
+        profession.setId(10);
+        return profession;
+    }
+
+
+
+}
