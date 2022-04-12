@@ -14,7 +14,7 @@ import ru.gerch.justpractice.service.ProfessionService;
 public class ProfessionTest {
 
 // Второй способ подключения Мокито
-//    @Rule
+    //@Rule
 //    public MockitoRule initRule = MockitoJUnit.rule();
     //Есть и третий способ, но он уже депрекейтид
 
