@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package mockTests;
+
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,8 @@ public class SpyExampleTest {
     List<String> list = new ArrayList<>();
 
     @Test
-    void test() {
+    public void test() {
+
         list.add("example");
         list.size();
         list.isEmpty();

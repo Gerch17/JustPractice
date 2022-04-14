@@ -1,3 +1,5 @@
+package mockTests;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
@@ -19,7 +21,7 @@ public class CaptorAnnotation {
     ArgumentCaptor argumentCaptor;
 
     @Test
-    void test() {
+    public void test() {
         list.add("test");
         Mockito.verify(list).add(String.valueOf(argumentCaptor.capture()));//достаем то, что было добавлено в методе
 

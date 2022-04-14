@@ -1,10 +1,12 @@
+package mockTests;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import ru.gerch.justpractice.models.Profession;
 import ru.gerch.justpractice.repository.ProfessionRepository;
 import ru.gerch.justpractice.service.ProfessionService;
@@ -13,22 +15,21 @@ import ru.gerch.justpractice.service.ProfessionService;
 @RunWith(MockitoJUnitRunner.class)
 public class ProfessionTest {
 
-// Второй способ подключения Мокито
+    // Второй способ подключения Мокито
     //@Rule
-//    public MockitoRule initRule = MockitoJUnit.rule();
+    //    public MockitoRule initRule = MockitoJUnit.rule();
     //Есть и третий способ, но он уже депрекейтид
 
     @Mock
-    ProfessionRepository professionRepository;
+    private ProfessionRepository professionRepository;
 
-    @Autowired
-    ProfessionService professionService;
+    @InjectMocks
+    private ProfessionService professionService;
 
     @Test
-    void getProfessionNameTest() {
+    public void test() {
         Profession profession = getProfession();
-        Mockito.when(professionRepository.findProfessionById(Mockito.anyInt())).thenReturn(profession);
-
+        Mockito.when(professionRepository.findProfessionById(Mockito.anyLong())).thenReturn(profession);
 
         String actualName = professionService.getProfessionNameById(10);
         Assert.assertEquals(profession.getName(), actualName);
@@ -41,7 +42,5 @@ public class ProfessionTest {
         profession.setId(10);
         return profession;
     }
-
-
 
 }
