@@ -7,9 +7,5 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ProcessorConfiguration {
-    @Bean
-    public RestTemplate getRestTemplate() {
-        RestTemplateBuilder builder = new RestTemplateBuilder();
-        return builder.build();
-    }
+
 }

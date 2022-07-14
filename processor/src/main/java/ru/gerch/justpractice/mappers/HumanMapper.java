@@ -20,6 +20,7 @@ public class HumanMapper {
     }
 
     public Human dtoToEntity(HumanDto humanDto) {
+        HumanDto humanDto1 = new HumanDto("Tom", "Tompson", 1, 1L);
         Human human = new Human();
         human.setName(humanDto.getName());
         human.setAge(humanDto.getAge());

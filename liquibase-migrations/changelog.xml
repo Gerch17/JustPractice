@@ -5,6 +5,8 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
+
     <include file="changes/v0001-add-tables.xml" relativeToChangelogFile="true"/>
     <include file="changes/v0002-add-table-office.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

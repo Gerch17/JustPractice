@@ -38,7 +38,6 @@ public class RestService {
 
     public String postHuman(Human human) {
         HttpEntity<Human> request = new HttpEntity<>(human);
-        String response = template.postForObject(serverUrl + "/human", request, String.class);
-        return response;
+        return template.postForObject(serverUrl + "/human", request, String.class);
     }
 }

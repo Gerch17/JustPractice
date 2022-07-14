@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ProfessionRepository extends JpaRepository<Profession, Long> {
     Profession findProfessionById(long id);
+
 }

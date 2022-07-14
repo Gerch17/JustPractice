@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class SpyExampleTest {
     //эта аннотация позволяет следить за поведением объекта
     @Spy
-    List<String> list = new ArrayList<>();
+    List<String> list;
 
     @Test
     public void test() {

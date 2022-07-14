@@ -60,9 +60,14 @@ public class HumanService {
         return restService.postHuman(human);
     }
 
-    public void changeName(long humanId, String name) {
+    public Human changeName(long humanId, String name) {
         Human human = humanRepository.findHumanById(humanId);
         human.setName(name);
         humanRepository.save(human);
+        return human;
+    }
+
+    public List<Human> getHumanBetween(int from, int to) {
+        return humanRepository.findHumansByAgeBetween(from, to);
     }
 }

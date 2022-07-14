@@ -24,6 +24,7 @@ public class MainController {
     private final ProfessionService professionService;
     private final CommonService commonService;
 
+
     @Autowired
     public MainController(HumanService humanService,
                           ProfessionService professionService,
@@ -110,5 +111,10 @@ public class MainController {
                                             @PathVariable String name) {
         humanService.changeName(humanId, name);
         return ResponseEntity.ok(humanService.getHuman(humanId));
+    }
+
+    @GetMapping("/human/between")
+    public ResponseEntity<List<Human>> getHumanBetween(@RequestParam int from, @RequestParam int to) {
+        return ResponseEntity.ok(humanService.getHumanBetween(from, to));
     }
 }
